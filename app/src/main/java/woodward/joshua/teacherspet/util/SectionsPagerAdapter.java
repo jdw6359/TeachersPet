@@ -23,12 +23,20 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+
+        switch(position){
+            case 0:
+                return new ClassworkFragment();
+            case 1:
+                return new ClassworkFragment();
+        }
+        return new ClassworkFragment();
     }
 
     @Override
     public int getCount() {
-        return 0;
+        //show two total tabs
+        return 2;
     }
 
     @Override
@@ -36,7 +44,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Locale l= Locale.getDefault();
         switch(position){
             case 0:
-                return "test";
+                return "Tab 1";
+            case 1:
+                return "Tab 2";
         }
         return null;
     }

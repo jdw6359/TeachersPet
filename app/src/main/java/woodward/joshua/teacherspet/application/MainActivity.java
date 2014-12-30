@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.parse.ParseUser;
 
 import woodward.joshua.teacherspet.R;
 import woodward.joshua.teacherspet.util.SectionsPagerAdapter;
@@ -32,6 +35,12 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //if the user is not logged in, redirect the user to the login activity
+        ParseUser currentUser= ParseUser.getCurrentUser();
+        if(currentUser==null){
+            navigateToLogin();
+        }
 
         //set up the action bar
         final ActionBar actionBar=getActionBar();
@@ -82,15 +91,19 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_signout) {
+            ParseUser.logOut();
+            Intent loginIntent=new Intent(MainActivity.this,LoginActivity.class);
+            loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(loginIntent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
+        mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
@@ -100,6 +113,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
 
+    public void navigateToLogin(){
+        Intent loginIntent=new Intent(this, LoginActivity.class);
+        //add flags so that the user is not able to navigate "Back" to the main activity
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //start activity
+        startActivity(loginIntent);
     }
 }
