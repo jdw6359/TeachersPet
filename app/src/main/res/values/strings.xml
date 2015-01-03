@@ -20,7 +20,9 @@
     <string name="login_fail_alert_title">Failed Login</string>
     <string name="title_activity_students_fragment">StudentsFragment</string>
     <string name="new_student_button">Add New Student</string>
-    <string name="add_student_button">Add Student</string>
-
-
+    <string name="add_new_student_button">Add Student</string>
+    <string name="title_activity_add_student">Add Student</string>
+    <string name="new_student_first_name_hint">First Name</string>
+    <string name="new_student_last_name_hint">Last Name</string>
+    <string name="new_student_grade_hint">Grade</string>
 </resources>

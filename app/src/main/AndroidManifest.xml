@@ -37,6 +37,18 @@
             android:name=".application.StudentsFragment"
             android:label="@string/title_activity_students_fragment" >
         </activity>
+        <activity
+            android:name=".application.AddStudent"
+            android:label="@string/title_activity_add_student"
+            android:parentActivityName=".application.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="woodward.joshua.teacherspet.application.MainActivity" />
+        </activity>
+        <activity
+            android:name=".application.AddStudentActivity"
+            android:label="@string/title_activity_add_student" >
+        </activity>
     </application>
 
 </manifest>

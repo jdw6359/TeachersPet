@@ -1,5 +1,6 @@
 package woodward.joshua.teacherspet.application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -28,7 +29,9 @@ public class StudentsFragment extends ListFragment {
         mAddNewStudentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(rootView.getContext(),"add new student button clicked!",Toast.LENGTH_LONG).show();
+                //navigate user to add student activity
+                Intent addStudentIntent=new Intent(rootView.getContext(),AddStudentActivity.class);
+                startActivity(addStudentIntent);
             }
         });
 
