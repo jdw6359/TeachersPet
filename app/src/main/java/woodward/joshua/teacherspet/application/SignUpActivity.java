@@ -97,7 +97,7 @@ public class SignUpActivity extends Activity {
                 newUser.setUsername(username);
                 newUser.setPassword(password);
                 newUser.setEmail(email);
-                newUser.put(ParseConstants.KEY_NAME,name);
+                newUser.put(ParseConstants.USER_KEY_NAME,name);
 
                 newUser.signUpInBackground(new SignUpCallback() {
                     @Override

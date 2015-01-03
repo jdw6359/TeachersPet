@@ -10,7 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import woodward.joshua.teacherspet.R;
+import woodward.joshua.teacherspet.util.ParseQueries;
 
 /**
  * Created by Joshua on 12/29/2014.
@@ -41,5 +46,8 @@ public class StudentsFragment extends ListFragment {
     @Override
     public void onResume(){
         super.onResume();
+
+        ParseQuery<ParseObject> allStudentsQuery= ParseQueries.getAllStudent(ParseUser.getCurrentUser());
+
     }
 }

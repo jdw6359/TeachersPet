@@ -25,4 +25,6 @@
     <string name="new_student_first_name_hint">First Name</string>
     <string name="new_student_last_name_hint">Last Name</string>
     <string name="new_student_grade_hint">Grade</string>
+    <string name="data_store_error_title">Data Store Error</string>
+    <string name="data_store_error_message">There was an error saving this information</string>
 </resources>
