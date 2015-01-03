@@ -22,7 +22,7 @@
     <string name="confirm_password_alert_message">The password confirmation does not match the original password</string>
 
     <string name="signup_fail_alert_title">Sign Up Error</string>
-
+    <string name="login_fail_alert_title">Failed Login</string>
 
 
 </resources>
