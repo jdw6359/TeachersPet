@@ -3,10 +3,8 @@
 
     <string name="app_name">Teachers Pet</string>
     <string name="action_signout">Sign Out</string>
-
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_sign_up">SignUp Activity</string>
-
     <string name="username_field_hint">Username</string>
     <string name="name_field_hint">Name</string>
     <string name="email_field_hint">Email</string>
@@ -14,15 +12,15 @@
     <string name="confirm_password_field_hint">Confirm Password</string>
     <string name="sign_in_button_text">Sign In</string>
     <string name="sign_up_button_text">Sign Up</string>
-
     <string name="missing_fields_alert_title">Missing Fields</string>
     <string name="missing_fields_alert_message">Please complete all fields in this form</string>
-
     <string name="confirm_password_alert_title">Password Warning</string>
     <string name="confirm_password_alert_message">The password confirmation does not match the original password</string>
-
     <string name="signup_fail_alert_title">Sign Up Error</string>
     <string name="login_fail_alert_title">Failed Login</string>
+    <string name="title_activity_students_fragment">StudentsFragment</string>
+    <string name="new_student_button">Add New Student</string>
+    <string name="add_student_button">Add Student</string>
 
 
 </resources>

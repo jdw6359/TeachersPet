@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
 
+import woodward.joshua.teacherspet.application.ClassesFragment;
+import woodward.joshua.teacherspet.application.StudentsFragment;
+
 /**
  * Created by Joshua on 12/29/2014.
  */
@@ -26,11 +29,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch(position){
             case 0:
-                return new ClassworkFragment();
+                return new StudentsFragment();
             case 1:
-                return new ClassworkFragment();
+                return new ClassesFragment();
         }
-        return new ClassworkFragment();
+        return new ClassesFragment();
     }
 
     @Override
@@ -44,9 +47,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Locale l= Locale.getDefault();
         switch(position){
             case 0:
-                return "Tab 1";
+                return "Students";
             case 1:
-                return "Tab 2";
+                return "Classes";
         }
         return null;
     }

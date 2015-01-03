@@ -33,6 +33,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="woodward.joshua.teacherspet.application.LoginActivity" />
         </activity>
+        <activity
+            android:name=".application.StudentsFragment"
+            android:label="@string/title_activity_students_fragment" >
+        </activity>
     </application>
 
 </manifest>
