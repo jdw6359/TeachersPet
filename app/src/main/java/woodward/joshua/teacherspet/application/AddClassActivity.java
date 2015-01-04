@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -61,6 +63,7 @@ public class AddClassActivity extends ListActivity {
                     ArrayAdapter<String> studentNamesAdapter=new ArrayAdapter<String>(
                             AddClassActivity.this, android.R.layout.simple_list_item_checked,studentNames);
                     setListAdapter(studentNamesAdapter);
+                    getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                 }else{
                     //unsuccessful
                     Log.d(TAG, e.getMessage());
@@ -68,6 +71,18 @@ public class AddClassActivity extends ListActivity {
             }
         });
 
+        //click listener for clicking on items in the list
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //check the item
+                getListView().setItemChecked(position,true);
+            }
+        });
+
+
+
+        //click listener for add class button
         mAddClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
