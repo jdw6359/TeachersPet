@@ -10,7 +10,7 @@ import com.parse.ParseUser;
 public final class ParseQueries {
 
     //given the current user, return associated students
-    public final static ParseQuery<ParseObject> getAllStudent(ParseUser currentUser){
+    public final static ParseQuery<ParseObject> getAllStudents(ParseUser currentUser){
 
         ParseQuery<ParseObject> allStudentsQuery=ParseQuery.getQuery(ParseConstants.TABLE_STUDENT);
         //filter to students where teacher id matches
@@ -19,8 +19,13 @@ public final class ParseQueries {
         return allStudentsQuery;
     }
 
-    
+    //given the current user, return associated classes
+    public final static ParseQuery<ParseObject> getAddClasses(ParseUser currentUser){
 
+        ParseQuery<ParseObject> allClassesQuery=ParseQuery.getQuery(ParseConstants.TABLE_CLASS);
+        //filter to students where teacher id matches
+        allClassesQuery.whereEqualTo(ParseConstants.CLASS_KEY_TEACHER,currentUser.getObjectId());
 
-
+        return allClassesQuery;
+    }
 }

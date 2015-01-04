@@ -61,7 +61,7 @@ public class StudentsFragment extends ListFragment {
         super.onResume();
 
         //get query from static query class
-        ParseQuery<ParseObject> allStudentsQuery= ParseQueries.getAllStudent(ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> allStudentsQuery= ParseQueries.getAllStudents(ParseUser.getCurrentUser());
         allStudentsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> students, ParseException e) {
