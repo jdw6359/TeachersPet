@@ -19,8 +19,10 @@
     <string name="signup_fail_alert_title">Sign Up Error</string>
     <string name="login_fail_alert_title">Failed Login</string>
     <string name="title_activity_students_fragment">StudentsFragment</string>
-    <string name="new_student_button">Add New Student</string>
-    <string name="add_new_student_button">Add Student</string>
+    <string name="add_new_student_button">Add New Student</string>
+    <string name="add_student_button">Add Student</string>
+    <string name="add_class_button">Add Class</string>
+    <string name="add_new_class_button">Add New Class</string>
     <string name="title_activity_add_student">Add Student</string>
     <string name="new_student_first_name_hint">First Name</string>
     <string name="new_student_last_name_hint">Last Name</string>
