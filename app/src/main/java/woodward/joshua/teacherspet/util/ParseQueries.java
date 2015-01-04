@@ -9,6 +9,7 @@ import com.parse.ParseUser;
  */
 public final class ParseQueries {
 
+    //given the current user, return associated students
     public final static ParseQuery<ParseObject> getAllStudent(ParseUser currentUser){
 
         ParseQuery<ParseObject> allStudentsQuery=ParseQuery.getQuery(ParseConstants.TABLE_STUDENT);
@@ -17,6 +18,9 @@ public final class ParseQueries {
 
         return allStudentsQuery;
     }
+
+    
+
 
 
 }

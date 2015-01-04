@@ -2,6 +2,7 @@ package woodward.joshua.teacherspet.application;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 import woodward.joshua.teacherspet.R;
+import woodward.joshua.teacherspet.util.ParseConstants;
 
 public class AddClassActivity extends Activity {
 
@@ -40,7 +47,32 @@ public class AddClassActivity extends Activity {
                     return;
                 }
 
-                Toast.makeText(AddClassActivity.this,"adding class record",Toast.LENGTH_LONG).show();
+                //create parse object
+                ParseObject newClass=new ParseObject(ParseConstants.TABLE_CLASS);
+                newClass.put(ParseConstants.CLASS_KEY_NAME,className);
+                newClass.put(ParseConstants.CLASS_KEY_TEACHER, ParseUser.getCurrentUser().getObjectId());
+
+                //save parse object in backend, navigate to main activity when complete
+                newClass.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e==null){
+                            //successful, navigate user to main activity
+                            Intent homeIntent=new Intent(AddClassActivity.this,MainActivity.class);
+                            startActivity(homeIntent);
+
+                        }else{
+                            //unsuccessful
+                            AlertDialog.Builder dataStoreAlertBuilder=new AlertDialog.Builder(AddClassActivity.this);
+                            dataStoreAlertBuilder.setTitle(R.string.data_store_error_title);
+                            dataStoreAlertBuilder.setMessage(R.string.data_store_error_message);
+                            dataStoreAlertBuilder.setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dataStoreAlert=dataStoreAlertBuilder.create();
+                            dataStoreAlert.show();
+                        }
+                    }
+                });
+
 
             }
         });
