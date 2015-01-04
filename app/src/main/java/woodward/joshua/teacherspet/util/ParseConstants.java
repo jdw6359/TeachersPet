@@ -16,5 +16,6 @@ public final class ParseConstants {
     public final static String TABLE_CLASS="Class";
     public final static String CLASS_KEY_NAME="name";
     public final static String CLASS_KEY_TEACHER="teacherId";
+    public final static String CLASS_RELATION_STUDENTS="students";
 
 }

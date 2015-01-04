@@ -20,6 +20,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -81,7 +82,6 @@ public class AddClassActivity extends ListActivity {
         });
 
 
-
         //click listener for add class button
         mAddClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +102,15 @@ public class AddClassActivity extends ListActivity {
                 ParseObject newClass=new ParseObject(ParseConstants.TABLE_CLASS);
                 newClass.put(ParseConstants.CLASS_KEY_NAME,className);
                 newClass.put(ParseConstants.CLASS_KEY_TEACHER, ParseUser.getCurrentUser().getObjectId());
+
+                //for selected students, add to class via parse relationship
+                ParseRelation<ParseObject> classStudentRelation=newClass.getRelation(ParseConstants.CLASS_RELATION_STUDENTS);
+                for(int i=0;i<mStudents.size();i++){
+                    if(getListView().isItemChecked(i)){
+                        //add the student to the relation
+                        classStudentRelation.add(mStudents.get(i));
+                    }
+                }
 
                 //save parse object in backend, navigate to main activity when complete
                 newClass.saveInBackground(new SaveCallback() {
