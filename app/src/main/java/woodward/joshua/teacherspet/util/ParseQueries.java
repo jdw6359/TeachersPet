@@ -11,7 +11,7 @@ public final class ParseQueries {
 
     public final static ParseQuery<ParseObject> getAllStudent(ParseUser currentUser){
 
-        ParseQuery<ParseObject> allStudentsQuery=ParseQuery.getQuery(ParseConstants.CLASS_STUDENT);
+        ParseQuery<ParseObject> allStudentsQuery=ParseQuery.getQuery(ParseConstants.TABLE_STUDENT);
         //filter to students where teacher id matches
         allStudentsQuery.whereEqualTo(ParseConstants.STUDENT_KEY_TEACHER,currentUser.getObjectId());
 

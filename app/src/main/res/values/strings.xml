@@ -29,4 +29,7 @@
     <string name="new_student_grade_hint">Grade</string>
     <string name="data_store_error_title">Data Store Error</string>
     <string name="data_store_error_message">There was an error saving this information</string>
+    <string name="title_activity_add_class">Add Class</string>
+    <string name="new_class_name_hint">Class Name</string>
+
 </resources>

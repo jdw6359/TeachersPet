@@ -17,4 +17,5 @@
         android:id="@android:id/list"
         android:layout_above="@+id/add_new_student_button"
         android:layout_alignParentTop="true"/>
+
 </RelativeLayout>

@@ -57,7 +57,7 @@ public class AddStudentActivity extends Activity {
                     return;
                 }
 
-                ParseObject newStudent=new ParseObject(ParseConstants.CLASS_STUDENT);
+                ParseObject newStudent=new ParseObject(ParseConstants.TABLE_STUDENT);
                 newStudent.put(ParseConstants.STUDENT_KEY_FIRSTNAME,firstName);
                 newStudent.put(ParseConstants.STUDENT_KEY_LASTNAME,lastName);
                 newStudent.put(ParseConstants.STUDENT_KEY_GRADE,grade);
