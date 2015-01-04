@@ -19,7 +19,13 @@
         android:layout_height="wrap_content"
         android:text="@string/add_class_button"
         android:id="@+id/addClassButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentBottom="true"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@android:id/list"
+        android:layout_below="@+id/classNameText"
+        android:layout_above="@id/addClassButton" />
+
 </RelativeLayout>

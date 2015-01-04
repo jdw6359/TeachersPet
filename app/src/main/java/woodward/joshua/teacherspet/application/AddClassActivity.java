@@ -2,25 +2,36 @@ package woodward.joshua.teacherspet.application;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.List;
+
 import woodward.joshua.teacherspet.R;
 import woodward.joshua.teacherspet.util.ParseConstants;
+import woodward.joshua.teacherspet.util.ParseQueries;
 
-public class AddClassActivity extends Activity {
+public class AddClassActivity extends ListActivity {
 
+    public static final String TAG=AddClassActivity.class.getSimpleName();
+
+    List<ParseObject> mStudents;
     EditText mClassNameField;
     Button mAddClassButton;
 
@@ -31,6 +42,31 @@ public class AddClassActivity extends Activity {
 
         mClassNameField=(EditText)findViewById(R.id.classNameText);
         mAddClassButton=(Button)findViewById(R.id.addClassButton);
+
+        //get list of students belonging to teacher, create check list
+        ParseQuery<ParseObject> allStudents= ParseQueries.getAllStudents(ParseUser.getCurrentUser());
+        allStudents.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> students, ParseException e) {
+                if(e==null){
+                    //successful
+                    mStudents=students;
+                    String[] studentNames=new String[mStudents.size()];
+                    for(int i=0;i<mStudents.size();i++){
+                        String studentFirstName=mStudents.get(i).get(ParseConstants.STUDENT_KEY_FIRSTNAME).toString();
+                        String studentLastName=mStudents.get(i).get(ParseConstants.STUDENT_KEY_LASTNAME).toString();
+                        studentNames[i]=studentLastName + ", " + studentFirstName;
+                    }
+
+                    ArrayAdapter<String> studentNamesAdapter=new ArrayAdapter<String>(
+                            AddClassActivity.this, android.R.layout.simple_list_item_checked,studentNames);
+                    setListAdapter(studentNamesAdapter);
+                }else{
+                    //unsuccessful
+                    Log.d(TAG, e.getMessage());
+                }
+            }
+        });
 
         mAddClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,12 +108,7 @@ public class AddClassActivity extends Activity {
                         }
                     }
                 });
-
-
             }
         });
-
-
     }
-
 }
