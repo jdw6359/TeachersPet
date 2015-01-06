@@ -16,7 +16,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addNewEvaluationButton"
+        android:id="@+id/addEvaluationButton"
         android:layout_alignParentBottom="true"
         android:text="@string/add_evaluation_button" />
 
@@ -25,6 +25,6 @@
         android:layout_height="wrap_content"
         android:id="@android:id/list"
         android:layout_below="@+id/evaluationNameTextField"
-        android:layout_above="@+id/addNewEvaluationButton" />
+        android:layout_above="@+id/addEvaluationButton" />
 
 </RelativeLayout>
