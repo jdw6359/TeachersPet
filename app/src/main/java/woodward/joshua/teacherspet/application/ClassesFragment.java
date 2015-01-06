@@ -56,7 +56,7 @@ public class ClassesFragment extends ListFragment {
         super.onResume();
 
         //get parse query
-        ParseQuery<ParseObject> allClassesQuery= ParseQueries.getAddClasses(ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> allClassesQuery= ParseQueries.getAllClasses(ParseUser.getCurrentUser());
         allClassesQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> classes, ParseException e) {

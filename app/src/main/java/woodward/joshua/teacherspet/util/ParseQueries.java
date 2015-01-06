@@ -20,7 +20,7 @@ public final class ParseQueries {
     }
 
     //given the current user, return associated classes
-    public final static ParseQuery<ParseObject> getAddClasses(ParseUser currentUser){
+    public final static ParseQuery<ParseObject> getAllClasses(ParseUser currentUser){
 
         ParseQuery<ParseObject> allClassesQuery=ParseQuery.getQuery(ParseConstants.TABLE_CLASS);
         //filter to students where teacher id matches
