@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.Locale;
 
 import woodward.joshua.teacherspet.application.ClassesFragment;
+import woodward.joshua.teacherspet.application.EvaluationsFragment;
 import woodward.joshua.teacherspet.application.StudentsFragment;
 
 /**
@@ -32,6 +33,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new StudentsFragment();
             case 1:
                 return new ClassesFragment();
+            case 2:
+                return new EvaluationsFragment();
         }
         return new ClassesFragment();
     }
@@ -39,7 +42,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         //show two total tabs
-        return 2;
+        return 3;
     }
 
     @Override
@@ -50,6 +53,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return "Students";
             case 1:
                 return "Classes";
+            case 2:
+                return "Evaluations";
         }
         return null;
     }
