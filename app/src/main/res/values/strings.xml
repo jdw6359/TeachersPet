@@ -32,5 +32,8 @@
     <string name="data_store_error_message">There was an error saving this information</string>
     <string name="title_activity_add_class">Add Class</string>
     <string name="new_class_name_hint">Class Name</string>
+    <string name="title_activity_add_evaluation">AddEvaluationActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -46,7 +46,8 @@ public class EvaluationsFragment extends ListFragment {
             @Override
             public void onClick(View view) {
                 //Bring the user to the AddEvaluationsActivity
-                
+                Intent addEvaluationIntent=new Intent(rootView.getContext(), AddEvaluationActivity.class);
+                startActivity(addEvaluationIntent);
             }
         });
 

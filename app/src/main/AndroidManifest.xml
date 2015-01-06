@@ -57,6 +57,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="woodward.joshua.teacherspet.application.MainActivity" />
         </activity>
+        <activity
+            android:name=".application.AddEvaluationActivity"
+            android:label="@string/title_activity_add_evaluation"
+            android:parentActivityName=".application.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="woodward.joshua.teacherspet.application.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
