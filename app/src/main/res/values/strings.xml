@@ -14,6 +14,7 @@
     <string name="sign_up_button_text">Sign Up</string>
     <string name="missing_fields_alert_title">Missing Fields</string>
     <string name="missing_fields_alert_message">Please complete all fields in this form</string>
+    <string name="empty_evaluation_name_field">Evaluation name cannot be empty</string>
     <string name="confirm_password_alert_title">Password Warning</string>
     <string name="confirm_password_alert_message">The password confirmation does not match the original password</string>
     <string name="signup_fail_alert_title">Sign Up Error</string>

@@ -1,6 +1,7 @@
 package woodward.joshua.teacherspet.application;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -33,7 +35,6 @@ public class AddEvaluationActivity extends ListActivity {
     ListView mClassList;
     List<ParseObject> mClasses;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,6 @@ public class AddEvaluationActivity extends ListActivity {
         mEvaluationNameEditText=(EditText)findViewById(R.id.evaluationNameTextField);
         mClassList=getListView();
         mAddEvaluationButton=(Button)findViewById(R.id.addEvaluationButton);
-
 
         //get parse query from ParseQueries
         ParseQuery<ParseObject> allClassesQueries =ParseQueries.getAllClasses(ParseUser.getCurrentUser());
@@ -79,12 +79,30 @@ public class AddEvaluationActivity extends ListActivity {
             }
         });
 
-
         //add click listener for add evaluation button
         mAddEvaluationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //grab values
+                String evaluationName=mEvaluationNameEditText.getText().toString();
+                //ensure that evaluation name is not empty
+                if(evaluationName.equals("")){
+                    AlertDialog.Builder emptyEvaluationNameAlertBuilder=new AlertDialog.Builder(AddEvaluationActivity.this);
+                    emptyEvaluationNameAlertBuilder.setTitle(R.string.missing_fields_alert_title);
+                    emptyEvaluationNameAlertBuilder.setMessage(R.string.empty_evaluation_name_field);
+                    emptyEvaluationNameAlertBuilder.setPositiveButton(android.R.string.ok,null);
+                    AlertDialog emptyEvaluationNameAlert=emptyEvaluationNameAlertBuilder.create();
+                    emptyEvaluationNameAlert.show();
+                    return;
+                }
+
+                /*
+                //ensure that one of the classes was selected
+                for(int i=0;i<mClasses.size();i++){
+
+                }
+                */
+
+                Toast.makeText(AddEvaluationActivity.this, "Creating parse evaluation object",Toast.LENGTH_LONG).show();
 
                 //create parse object
 
