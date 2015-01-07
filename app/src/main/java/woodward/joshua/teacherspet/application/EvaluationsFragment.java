@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -35,7 +36,6 @@ public class EvaluationsFragment extends ListFragment {
 
     //fragment member variables
     Button mAddNewEvaluationButton;
-
     List<ParseObject> mEvaluationList;
 
     @Override
@@ -66,9 +66,31 @@ public class EvaluationsFragment extends ListFragment {
         allEvaluationsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> evaluationList, ParseException e) {
+
+                Log.d(TAG,"Query returned");
+
                 if(e==null){
+
+                    Log.d(TAG,"successful query");
+
                     //successful query
-                    Toast.makeText(getListView().getContext(),"successful query",Toast.LENGTH_LONG).show();
+                    mEvaluationList=evaluationList;
+
+                    //generate list of names to be adapted
+                    String[] evaluationNames=new String[mEvaluationList.size()];
+                    for(int i=0;i<mEvaluationList.size();i++){
+                        String evaluationName=mEvaluationList.get(i).get(ParseConstants.EVALUATION_KEY_NAME).toString();
+                        evaluationNames[i]=evaluationName;
+                    }
+
+                    Log.d(TAG,"string list completed");
+
+                    ArrayAdapter<String> evaluationNamesAdapter=new ArrayAdapter<String>(getListView().getContext(),
+                            android.R.layout.simple_list_item_1,evaluationNames);
+                    setListAdapter(evaluationNamesAdapter);
+
+                    Log.d(TAG,"adapter created and set");
+
                 }else{
                     //failed query, debug log
                     Log.d(TAG,e.getMessage());

@@ -33,7 +33,7 @@ public final class ParseQueries {
     public final static ParseQuery<ParseObject> getAllEvaluations(ParseUser currentUser){
 
         ParseQuery<ParseObject> allClassesQuery=ParseQueries.getAllClasses(currentUser);
-        ParseQuery<ParseObject> allEvaluationsQuery=ParseQuery.getQuery(ParseConstants.EVALUATION_KEY_CLASS);
+        ParseQuery<ParseObject> allEvaluationsQuery=ParseQuery.getQuery(ParseConstants.TABLE_EVALUATION);
 
         //.whereMatchesQuery clause filters the evaluations to those belonging to the current user
         allEvaluationsQuery.whereMatchesQuery(ParseConstants.EVALUATION_KEY_CLASS,allClassesQuery);
