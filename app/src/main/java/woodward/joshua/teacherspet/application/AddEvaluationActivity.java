@@ -3,6 +3,7 @@ package woodward.joshua.teacherspet.application;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -123,11 +125,25 @@ public class AddEvaluationActivity extends ListActivity {
                 newEvaluation.put(ParseConstants.EVALUATION_KEY_COMPLETED,true);
 
                 //attempt to save the evaluation object
-                
-                //on success bring user to main activity
+                newEvaluation.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e==null){
+                            //bring the user to the main activity
+                            Intent homeIntent=new Intent(AddEvaluationActivity.this,MainActivity.class);
+                            startActivity(homeIntent);
+                        }else{
+                            //fail, alert user
+                            AlertDialog.Builder dataStoreAlertBuilder=new AlertDialog.Builder(AddEvaluationActivity.this);
+                            dataStoreAlertBuilder.setTitle(R.string.data_store_error_title);
+                            dataStoreAlertBuilder.setMessage(R.string.data_store_error_message);
+                            dataStoreAlertBuilder.setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dataStoreAlert=dataStoreAlertBuilder.create();
+                            dataStoreAlert.show();
+                        }
+                    }
+                });
             }
         });
-
-
     }
 }
