@@ -95,16 +95,16 @@ public class AddEvaluationActivity extends ListActivity {
                     return;
                 }
 
-                ParseObject selectedClass=null;
+                ParseObject evaluationClass=null;
                 //if the list is checked at a certain location, set selectedClass to parse object
                 for(int i=0;i<mClasses.size();i++){
                     if(mClassList.isItemChecked(i)){
-                        selectedClass=mClasses.get(i);
+                        evaluationClass=mClasses.get(i);
                     }
                 }
 
                 //if there is no selected class (selectedClass=null), alert the user
-                if(selectedClass==null){
+                if(evaluationClass==null){
                     AlertDialog.Builder emptyClassSelectAlertBuilder=new AlertDialog.Builder(AddEvaluationActivity.this);
                     emptyClassSelectAlertBuilder.setTitle(R.string.missing_fields_alert_title);
                     emptyClassSelectAlertBuilder.setMessage(R.string.empty_evaluation_class_select);
@@ -115,9 +115,15 @@ public class AddEvaluationActivity extends ListActivity {
                 }
 
                 //create parse object
+                ParseObject newEvaluation=new ParseObject(ParseConstants.TABLE_EVALUATION);
+                //add fields to evaluation parse object
+                newEvaluation.put(ParseConstants.EVALUATION_KEY_NAME,evaluationName);
+                newEvaluation.put(ParseConstants.EVALUATION_KEY_CLASS,evaluationClass);
+                //hardcode this value for now
+                newEvaluation.put(ParseConstants.EVALUATION_KEY_COMPLETED,true);
 
-                //save parse object in the background
-
+                //attempt to save the evaluation object
+                
                 //on success bring user to main activity
             }
         });
