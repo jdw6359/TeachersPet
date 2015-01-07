@@ -95,14 +95,24 @@ public class AddEvaluationActivity extends ListActivity {
                     return;
                 }
 
-                /*
-                //ensure that one of the classes was selected
+                ParseObject selectedClass=null;
+                //if the list is checked at a certain location, set selectedClass to parse object
                 for(int i=0;i<mClasses.size();i++){
-
+                    if(mClassList.isItemChecked(i)){
+                        selectedClass=mClasses.get(i);
+                    }
                 }
-                */
 
-                Toast.makeText(AddEvaluationActivity.this, "Creating parse evaluation object",Toast.LENGTH_LONG).show();
+                //if there is no selected class (selectedClass=null), alert the user
+                if(selectedClass==null){
+                    AlertDialog.Builder emptyClassSelectAlertBuilder=new AlertDialog.Builder(AddEvaluationActivity.this);
+                    emptyClassSelectAlertBuilder.setTitle(R.string.missing_fields_alert_title);
+                    emptyClassSelectAlertBuilder.setMessage(R.string.empty_evaluation_class_select);
+                    emptyClassSelectAlertBuilder.setPositiveButton(android.R.string.ok,null);
+                    AlertDialog emptyEvaluationNameAlert=emptyClassSelectAlertBuilder.create();
+                    emptyEvaluationNameAlert.show();
+                    return;
+                }
 
                 //create parse object
 
