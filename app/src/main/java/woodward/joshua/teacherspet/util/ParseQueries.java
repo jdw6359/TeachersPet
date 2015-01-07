@@ -28,4 +28,15 @@ public final class ParseQueries {
 
         return allClassesQuery;
     }
+
+    //given the current user, return associated evaluations (evaluations that belong to user's classes)
+    public final static ParseQuery<ParseObject> getAllEvaluations(ParseUser currentUser){
+
+        ParseQuery<ParseObject> allClassesQuery=ParseQueries.getAllClasses(currentUser);
+        ParseQuery<ParseObject> allEvaluationsQuery=ParseQuery.getQuery(ParseConstants.EVALUATION_KEY_CLASS);
+
+        //.whereMatchesQuery clause filters the evaluations to those belonging to the current user
+        allEvaluationsQuery.whereMatchesQuery(ParseConstants.EVALUATION_KEY_CLASS,allClassesQuery);
+        return allEvaluationsQuery;
+    }
 }

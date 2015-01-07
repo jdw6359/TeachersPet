@@ -36,6 +36,8 @@ public class EvaluationsFragment extends ListFragment {
     //fragment member variables
     Button mAddNewEvaluationButton;
 
+    List<ParseObject> mEvaluationList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,5 +59,21 @@ public class EvaluationsFragment extends ListFragment {
     @Override
     public void onResume(){
         super.onResume();
+
+        //get static query for all evaluations belonging to teacher
+        ParseQuery<ParseObject> allEvaluationsQuery=ParseQueries.getAllEvaluations(ParseUser.getCurrentUser());
+
+        allEvaluationsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> evaluationList, ParseException e) {
+                if(e==null){
+                    //successful query
+                    Toast.makeText(getListView().getContext(),"successful query",Toast.LENGTH_LONG).show();
+                }else{
+                    //failed query, debug log
+                    Log.d(TAG,e.getMessage());
+                }
+            }
+        });
     }
 }
